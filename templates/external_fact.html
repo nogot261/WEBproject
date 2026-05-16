@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Сторонний API{% endblock %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h4 mb-3">Использование стороннего API</h1>
+        <p class="text-muted">На этой странице приложение обращается к внешнему API и получает случайный факт.</p>
+
+        {% if fact %}
+            <div class="alert alert-success">
+                <strong>Полученный факт:</strong><br>
+                {{ fact }}
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <a href="/external-fact" class="btn btn-primary">Получить новый факт</a>
+    </div>
+</div>
+{% endblock %}

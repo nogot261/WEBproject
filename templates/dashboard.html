@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-1">Личный кабинет</h1>
+        <p class="text-muted mb-0">Пользователь: <strong>{{ user.username }}</strong></p>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="h5 mb-3">Загрузка файла</h2>
+                <form method="post" action="/upload" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Файл</label>
+                        <input class="form-control" type="file" name="file" accept=".txt,.csv,.json,.md,.log,.png,.jpg,.jpeg,.gif,.pdf,.zip" required>
+                        <div class="form-text">До 5 МБ. Разрешены: txt, csv, json, md, log, png, jpg, jpeg, gif, pdf, zip.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Описание</label>
+                        <textarea class="form-control" name="description" rows="3" placeholder="Краткое описание файла"></textarea>
+                    </div>
+                    <button class="btn btn-primary w-100">Загрузить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="h5 mb-3">Мои файлы</h2>
+                {% if files %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Файл</th>
+                                    <th>Тип</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in files %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>
+                                        <div class="fw-semibold">{{ item.original_name }}</div>
+                                        <div class="small text-muted">{{ item.description or 'Без описания' }}</div>
+                                    </td>
+                                    <td>{{ item.content_type or 'unknown' }}</td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="/files/{{ item.id }}" class="btn btn-sm btn-outline-primary">Открыть</a>
+                                            <a href="/download/{{ item.id }}" class="btn btn-sm btn-outline-secondary">Скачать</a>
+                                            <form method="post" action="/files/{{ item.id }}/delete">
+                                                <button class="btn btn-sm btn-outline-danger" type="submit">Удалить</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-secondary mb-0">Файлы пока не загружены.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="p-4 p-md-5 mb-4 rounded-3 hero-box text-white">
+    <div class="container-fluid py-3">
+        <h1 class="display-6 fw-bold">Учебный проект WebServer + API</h1>
+        <p class="col-md-9 fs-5 mb-4">
+            Проект сделан на Python с использованием FastAPI. Реализованы регистрация,
+            авторизация, работа с файлами, REST API, ORM и интеграция со сторонним API.
+        </p>
+        {% if user %}
+            <a href="/dashboard" class="btn btn-light btn-lg">Перейти в кабинет</a>
+        {% else %}
+            <a href="/register" class="btn btn-light btn-lg">Начать работу</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title h5">Что есть в проекте</h3>
+                <ul class="mb-0">
+                    <li>FastAPI + Jinja2</li>
+                    <li>Bootstrap 5</li>
+                    <li>SQLAlchemy ORM</li>
+                    <li>Регистрация и вход</li>
+                    <li>Загрузка и скачивание файлов</li>
+                    <li>REST API</li>
+                    <li>Сторонний API</li>
+                    <li>SQLite и Docker</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title h5">Статистика</h3>
+                <div class="row text-center mt-3">
+                    <div class="col-6">
+                        <div class="stat-number">{{ stats.users }}</div>
+                        <div class="text-muted">Пользователей</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-number">{{ stats.files }}</div>
+                        <div class="text-muted">Файлов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

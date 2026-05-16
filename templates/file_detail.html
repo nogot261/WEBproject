@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Карточка файла{% endblock %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h4 mb-3">Карточка файла</h1>
+        <dl class="row mb-4">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{ item.id }}</dd>
+
+            <dt class="col-sm-3">Имя файла</dt>
+            <dd class="col-sm-9">{{ item.original_name }}</dd>
+
+            <dt class="col-sm-3">MIME-тип</dt>
+            <dd class="col-sm-9">{{ item.content_type or 'unknown' }}</dd>
+
+            <dt class="col-sm-3">Описание</dt>
+            <dd class="col-sm-9">{{ item.description or 'Без описания' }}</dd>
+        </dl>
+
+        <div class="mb-4 d-flex flex-wrap gap-2">
+            <a href="/download/{{ item.id }}" class="btn btn-primary">Скачать файл</a>
+            <a href="/dashboard" class="btn btn-outline-secondary">Назад</a>
+            <form method="post" action="/files/{{ item.id }}/delete">
+                <button class="btn btn-outline-danger" type="submit">Удалить</button>
+            </form>
+        </div>
+
+        <h2 class="h5">Предпросмотр</h2>
+        {% if preview %}
+            <pre class="preview-box">{{ preview }}</pre>
+        {% else %}
+            <div class="alert alert-secondary mb-0">
+                Для этого типа файла текстовый предпросмотр не предусмотрен.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
