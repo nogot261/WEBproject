@@ -94,6 +94,11 @@ def render_message(request: Request, title: str, message: str, kind: str = "info
     )
 
 
+@app.head("/")
+def home_head():
+    return None
+
+
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request, db: Session = Depends(get_db)):
     user = get_current_user(request, db)
