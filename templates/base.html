@@ -11,23 +11,29 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
         <a class="navbar-brand" href="/">WebServer + API</a>
-        <div class="d-flex gap-2">
-            <a class="btn btn-outline-light btn-sm" href="/">Главная</a>
-            <a class="btn btn-outline-light btn-sm" href="/external-fact">Внешний API</a>
-            <a class="btn btn-outline-light btn-sm" href="/docs">Swagger</a>
-            {% if user %}
-                <a class="btn btn-primary btn-sm" href="/dashboard">Кабинет</a>
-                <a class="btn btn-warning btn-sm" href="/logout">Выход</a>
-            {% else %}
-                <a class="btn btn-outline-light btn-sm" href="/login">Вход</a>
-                <a class="btn btn-primary btn-sm" href="/register">Регистрация</a>
-            {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Открыть меню">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="navbar-nav ms-lg-auto gap-lg-2 pt-3 pt-lg-0">
+                <a class="btn btn-outline-light btn-sm nav-action" href="/">Главная</a>
+                <a class="btn btn-outline-light btn-sm nav-action" href="/external-fact">Внешний API</a>
+                <a class="btn btn-outline-light btn-sm nav-action" href="/docs">Swagger</a>
+                {% if user %}
+                    <a class="btn btn-primary btn-sm nav-action" href="/dashboard">Кабинет</a>
+                    <a class="btn btn-warning btn-sm nav-action" href="/logout">Выход</a>
+                {% else %}
+                    <a class="btn btn-outline-light btn-sm nav-action" href="/login">Вход</a>
+                    <a class="btn btn-primary btn-sm nav-action" href="/register">Регистрация</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>
 
-<div class="container pb-5">
+<main class="container pb-5">
     {% block content %}{% endblock %}
-</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

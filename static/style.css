@@ -1,5 +1,15 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+.navbar-brand {
+    max-width: calc(100vw - 96px);
+    overflow-wrap: anywhere;
+}
+
+.nav-action {
+    white-space: nowrap;
 }
 
 .hero-box {
@@ -20,4 +30,79 @@ body {
     padding: 1rem;
     max-height: 420px;
     overflow: auto;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .nav-action {
+        display: block;
+        width: 100%;
+        margin-bottom: .5rem;
+        padding-top: .625rem;
+        padding-bottom: .625rem;
+        text-align: center;
+        white-space: normal;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .container {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .navbar {
+        margin-bottom: 1rem !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.05rem;
+    }
+
+    .hero-box {
+        padding: 1.5rem !important;
+        border-radius: .75rem !important;
+    }
+
+    .hero-box .container-fluid {
+        padding: 0 !important;
+    }
+
+    .hero-box h1 {
+        font-size: clamp(1.55rem, 9vw, 2rem);
+        line-height: 1.16;
+    }
+
+    .hero-box p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 1rem !important;
+        line-height: 1.55;
+    }
+
+    .hero-box .btn-lg {
+        width: 100%;
+        padding: .75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 1.1rem;
+    }
+
+    .table {
+        min-width: 560px;
+        font-size: .9rem;
+    }
+
+    .table .btn {
+        width: 100%;
+    }
+
+    .stat-number {
+        font-size: 1.65rem;
+    }
 }
